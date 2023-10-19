@@ -2,6 +2,7 @@ from openpyxl import Workbook
 from openpyxl.worksheet.worksheet import Worksheet
 from pathlib import Path
 from datetime import datetime
+from _email import Email
 
 # This class aims to take the data from the lists that exist in the "shop" class that contain customers, products and
 # sales and export them to XLSX individually through specific methods, and that's what we see here, at the beginning
@@ -9,6 +10,7 @@ from datetime import datetime
 # then we have functions that do this work, where they receive the list of products, sales and customers and export them
 # to the defined path of the spreadsheet.
 
+e = Email()
 class Excel():
     def __init__(self):
         self.pathproductspreadsheet = Path().absolute() / 'spreadsheets' / 'products.xlsx'
@@ -45,6 +47,10 @@ class Excel():
         #save and showing success message
         workbook.save(self.pathproductspreadsheet)
         print(f'{worksheet.max_row -1} lines of products add sucessfully to products.xlsx')
+
+        choiceEmail = input('Send spreadsheet in email: [Y/N]: ')
+        if choiceEmail.lower() == 'y':
+            e.sendProductSpreadsheetEmail(self.pathproductspreadsheet)
     def export_customers_to_xlsx(self, listCustomers):
         workbook = Workbook()
         workbook.create_sheet('Customers')
@@ -65,6 +71,10 @@ class Excel():
 
         workbook.save(self.pathcustomerspreadsheet)
         print(f'{worksheet.max_column -1} lines of customers add sucessfully to customers.xlsx')
+
+        choiceEmail = input('Send spreadsheet in email: [Y/N]: ')
+        if choiceEmail.lower() == 'y':
+            e.sendCustomerSpreadsheetEmail(self.pathcustomerspreadsheet)
     def export_sales_to_xlsx(self, listSales):
         workbook = Workbook()
         workbook.create_sheet('Sales')
@@ -84,6 +94,13 @@ class Excel():
 
         workbook.save(self.pathsalespreadsheet)
         print(f'{worksheet.max_row -1} lines of sales add sucessfully to products.xlsx')
+
+        choiceEmail = input('Send spreadsheet in email: [Y/N]: ')
+        if choiceEmail.lower() == 'y':
+            e.sendSaleSpreadsheetEmail(self.pathsalespreadsheet)
+
+
+
 
 
 if __name__ == "__main__":
