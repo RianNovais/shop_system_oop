@@ -15,9 +15,12 @@ def choice_category(categoryName: str)->str or None:
         return ProductCategory.FOOD
     elif categoryName.lower() == "books":
         return ProductCategory.BOOKS
+    elif categoryName is None:
+        print('Invalid category')
+        return ProductCategory.DEFAULT
     else:
         print('Invalid category')
-        return None
+        return ProductCategory.DEFAULT
 
 class Product():
     def __init__(self, name: str, manufacturer: str, serialNumber: str, quantity: int, price: float, category: ProductCategory=ProductCategory.DEFAULT):

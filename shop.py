@@ -14,12 +14,23 @@ class Shop():
         self.sales:list[Sale] = []
 
 
-    def add_product(self, name, manufacturer, serialNumber, category, quantity, price):
-        p = Product(name, manufacturer, serialNumber, category, quantity, price)
+    def add_product(self):
+        name = input('Name: ')
+        manufacturer = input('Manufacturer: ')
+        serialNumber = input('Serial Number: ')
+        category = input('Category: ')
+        quantity = int(input('Quantity: '))
+        price = float(input('Price: R$ '))
+
+        p = Product(name, manufacturer, serialNumber, quantity, price, category)
         self.products.append(p)
         print(f'product {name} add sucessfully')
 
-    def add_customer(self, name, lastName, document, address):
+    def add_customer(self):
+        name = input('Name: ')
+        lastName = input('Last Name: ')
+        document = input('Document: ')
+        address = input('Address: ')
         c = Customer(name, lastName, document, address)
         self.customers.append(c)
         print(f'customer {name} {lastName} add sucessfully')
