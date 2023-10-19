@@ -1,3 +1,5 @@
+import os
+
 from openpyxl import Workbook
 from openpyxl.worksheet.worksheet import Worksheet
 from pathlib import Path
@@ -13,6 +15,13 @@ from _email import Email
 e = Email()
 class Excel():
     def __init__(self):
+
+        base_directory = Path().absolute()
+        spreadsheets_dir = base_directory / 'spreadsheets'
+
+        if not spreadsheets_dir.exists():
+            os.makedirs(spreadsheets_dir)
+
         self.pathproductspreadsheet = Path().absolute() / 'spreadsheets' / 'products.xlsx'
         self.pathcustomerspreadsheet = Path().absolute() / 'spreadsheets' / 'customers.xlsx'
         self.pathsalespreadsheet = Path().absolute() / 'spreadsheets' / 'sales.xlsx'
