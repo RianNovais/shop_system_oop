@@ -4,8 +4,7 @@ from shop import Shop
 
 s = Shop()
 
-#menu para interação com o usuário, chama as funções de adicionar, remover, vender e exportar pra XSLX encontradas
-#na classe Shop
+#menu for user interaction, calls the add, remove, sell and export functions to XSLX found in "shop" class
 
 while True:
     choiceUser = int(input('1-Add- Customer\n2-Add Product\n3-List Products\n4-List Customers\n5-Make Sale\n6-Export Products to XLSX'
@@ -31,5 +30,6 @@ while True:
         print('EXITING...')
         break
     else:
-        ...
+        print('enter a valid choice')
+
 

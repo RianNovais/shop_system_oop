@@ -4,6 +4,10 @@ from productCategory import ProductCategory
 
 c = count(start=1)
 
+# Here in the product class, we first have a function to handle the category entered by the user for the ProductCategory
+# enum and then we have the product class initialization, with the definition of all the attributes.
+# For example, we have the addDate attribute which uses the current date and time and the id, which is automatically incremented
+
 def choice_category(categoryName: str)->str or None:
     if categoryName == ProductCategory.DEFAULT:
         return productCategory.DEFAULT
@@ -36,6 +40,5 @@ class Product():
 
 
 if __name__ == "__main__":
-    p = Product('TV 50 POLEGADAS', 'Samsung', '1366', 10, 100, 'Eletronics')
-    print(p.category.value)
+    ...
 

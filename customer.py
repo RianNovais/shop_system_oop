@@ -1,6 +1,11 @@
 from itertools import count
 from datetime import datetime
 
+
+# customer class, which receives several attributes, including the current instantiation date and an
+# automatically incremented ID
+
+
 c = count(start=1)
 
 class Customer():
@@ -13,8 +18,5 @@ class Customer():
         self.address = address
 
 if __name__ == "__main__":
-    c = Customer('Rian', 'Muniz', '09984751570','a')
-    print(c.id)
-    c1 = Customer('Rian', 'Muniz', '09984751570','a')
-    print(c1.address)
+    ...
 

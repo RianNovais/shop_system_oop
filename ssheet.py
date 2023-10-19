@@ -3,6 +3,11 @@ from openpyxl.worksheet.worksheet import Worksheet
 from pathlib import Path
 from datetime import datetime
 
+# This class aims to take the data from the lists that exist in the "shop" class that contain customers, products and
+# sales and export them to XLSX individually through specific methods, and that's what we see here, at the beginning
+# of the class we pass the paths to 3 files, respectively .xlsx for products, customers and sales and the export date,
+# then we have functions that do this work, where they receive the list of products, sales and customers and export them
+# to the defined path of the spreadsheet.
 
 class Excel():
     def __init__(self):
@@ -30,9 +35,8 @@ class Excel():
         worksheet.cell(1, 7, 'Quantity')
         worksheet.cell(1, 8, 'Price')
 
-
-        #pra cada produto ele gera uma lista com os valores dos atributos e adiciona cada item respectivamente
-        #em cada linha com o .append (ele já reconhece que nossa 1 linha possui nossos titulos)
+        # for each product it generates a list with the attribute values and adds each item respectively
+        # on each line with .append (it already recognizes that our 1 line has our titles)
         for product in listProducts:
             prod = [product.id, product.addDate, product.name, product.manufacturer, product.serialNumber,
                     product.category.value, product.quantity, product.price]
@@ -41,16 +45,15 @@ class Excel():
         #save and showing success message
         workbook.save(self.pathproductspreadsheet)
         print(f'{worksheet.max_row -1} lines of products add sucessfully to products.xlsx')
-
     def export_customers_to_xlsx(self, listCustomers):
         workbook = Workbook()
         workbook.create_sheet('Customers')
         del workbook['Sheet']
         worksheet: Worksheet = workbook.active
 
-        #definindo headers de forma simplificada, passando uma lista com os titulos que queremos
-        #pro worksheet.append, nesse caso ele vai preencher a nossa primeira linha com cada titulo em cada
-        #coluna, formando nosso cabeçalho
+        # defining headers in a simplified way, passing a list with the titles we want
+        # pro worksheet.append, in this case it will fill our first line with each title in each
+        # column, forming our header
         headers = ['Id', 'Add Date', 'Name', 'LastName', 'Document', 'Address']
         worksheet.append(headers)
 
@@ -62,7 +65,6 @@ class Excel():
 
         workbook.save(self.pathcustomerspreadsheet)
         print(f'{worksheet.max_column -1} lines of customers add sucessfully to customers.xlsx')
-
     def export_sales_to_xlsx(self, listSales):
         workbook = Workbook()
         workbook.create_sheet('Sales')
@@ -84,7 +86,5 @@ class Excel():
         print(f'{worksheet.max_row -1} lines of sales add sucessfully to products.xlsx')
 
 
-
 if __name__ == "__main__":
-    e = Excel()
-    e.export_products_to_xlsx()
+    ...
