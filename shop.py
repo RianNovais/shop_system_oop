@@ -2,6 +2,10 @@
 from product import Product
 from customer import Customer
 from sale import Sale
+from ssheet import Excel
+
+
+e = Excel()
 
 class Shop():
     def __init__(self):
@@ -53,10 +57,10 @@ class Shop():
             raise ValueError('Product not found with this ID')
 
         def verify_quantity_product(product, quantity):
-            if quantity > product.quantity:
+            if quantity > int(product.quantity):
                 raise ValueError('Insufficient quantity of product')
             else:
-                product.quantity = product.quantity - quantity
+                product.quantity = int(product.quantity) - quantity
                 print(f'Sale made of product: {product.name} with quantity: {quantity} currently available quantity: {product.quantity}')
                 return
 
@@ -77,9 +81,30 @@ class Shop():
         self.sales.append(s)
         print('SALE MADE SUCCESSFULLY')
 
-    def export_data_xlsx(self):
-        ...
+    def export_products_xlsx(self):
+        e.export_products_to_xlsx(self.products)
+    def export_customers_xlsx(self):
+        e.export_customers_to_xlsx(self.customers)
+    def export_sales_xlsx(self):
+        e.export_sales_to_xlsx(self.sales)
+
 
 
 if __name__ == "__main__":
-    ...
+    s = Shop()
+    s.add_product('TV', 'Samsung', 'A114','10', 1500, 'Eletronics')
+    s.add_product('Arroz 5kg', 'CAMIL', 'A123', 50, 5, 'Food')
+    s.add_customer('Rian', 'Muniz', '09984751570', 'Rua X')
+    s.add_customer('Carlos', 'Santos', '02145479570', 'Rua Y')
+    s.make_sale()
+    s.make_sale()
+
+    s.export_products_xlsx()
+    s.export_customers_xlsx()
+    s.export_sales_xlsx()
+
+
+        #sale - > saledate, product, customer, quantity
+
+
+
